@@ -1,6 +1,7 @@
 :root{
     --color-1: #fff;
     --color-2: #222;
+    --color-2: rgb(34, 34, 34);
     --color-3: #494949;
     --color-4: #6C290C;
 }
@@ -15,10 +16,13 @@ html {
 body {
     padding: 0;
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Encode Sans SC", sans-serif;
     background: var(--color-2);
     color: var(--color-1);
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 h1{
     font-family: "Encode Sans SC", sans-serif;
@@ -30,8 +34,156 @@ h1{
         1px -1px 0 black,
         -1px  1px 0 black,
         1px  1px 0 black;
-    
+}
 
+/* ---------- BARRA DE NAVEGACION ----------- */
+
+#menu-burguer{
+    background-color: rgba(34, 34, 34, 0.7);
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+  }
+  
+  .burger {
+      position: relative;
+      width: 40px;
+      height: 30px;
+      background: transparent;
+      cursor: pointer;
+      display: block;
+    }
+    
+    .burger input {
+      display: none;
+    }
+    
+    .burger span {
+      display: block;
+      position: absolute;
+      height: 4px;
+      width: 100%;
+      background: rgb(255, 255, 255);
+      border-radius: 9px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: .25s ease-in-out;
+    }
+    
+    .burger span:nth-of-type(1) {
+      top: 0px;
+      transform-origin: left center;
+    }
+    
+    .burger span:nth-of-type(2) {
+      top: 50%;
+      transform: translateY(-50%);
+      transform-origin: left center;
+    }
+    
+    .burger span:nth-of-type(3) {
+      top: 100%;
+      transform-origin: left center;
+      transform: translateY(-100%);
+    }
+    
+    .burger input:checked ~ span:nth-of-type(1) {
+      transform: rotate(45deg);
+      top: 0px;
+      left: 5px;
+    }
+    
+    .burger input:checked ~ span:nth-of-type(2) {
+      width: 0%;
+      opacity: 0;
+    }
+    
+    .burger input:checked ~ span:nth-of-type(3) {
+      transform: rotate(-45deg);
+      top: 28px;
+      left: 5px;
+    }
+  
+  #navBar1{
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      background-color: var(--color-2);
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 10px;
+      z-index: 1001;
+      transition: background-color 0.9s ease;
+  
+  }
+  #navBar1.transparent{
+    background-color: transparent;
+  }
+  #navBar1 img{
+      display: block;
+  }
+  #menu-desplegable{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-right: 10px;
+    position: fixed;
+    top: 0px;
+    right: -300px;
+    width: 300px;
+    background-color: var(--color-2);
+    transition: right 0.4s ease;
+    z-index: 1000;
+    border-radius: 0 0 0 30px;
+  }
+  #menu-desplegable.visible{
+    right: 0;
+  }
+  #menu-desplegable ul{
+    text-align: right;
+    padding-right: 15px;
+    transition: transform 0.2s ease-in-out;
+  }
+  #menu-desplegable ul:hover{
+    transform: scale(1.1);
+    transform: translateX(-20px);
+    font-weight: bold;
+}
+
+/* -------- CHEVRON ---------- */
+
+#chevronAnimado{
+    text-align: center;
+    font-optical-sizing: auto;   
+    font-style: normal;
+}
+#chevronAnimado img{
+    width: 15%;
+    padding: 0 0 80px 0;
+    opacity: 0;
+    transform: translateY(0);
+    animation: aparecerDesaparecer 3s infinite;
+}
+@keyframes aparecerDesaparecer {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(25px);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
 }
 
 /* --------- CLASES --------- */
@@ -40,7 +192,12 @@ h1{
 .bebidas{
     display: grid;
     grid-template-columns: 1fr;
-
+    gap: 10px;
+    transition: opacity 0.5s ease;
+}
+.oculto2{
+    display: none;
+    opacity: 0;
 }
 .categBebidas{
     display: grid;
@@ -95,6 +252,18 @@ h1{
     h1{
         font-size: 4rem;
     }
+
+    /* ------- CLASES ------ */
+    /* ------- CLASES ------ */
+
+    .bebidas{
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+        grid-template-rows: auto;
+        gap: 10px;
+        transition: opacity 0.5s ease;
+    }
+
 
     /* -------- IDs -------- */
     /* -------- IDs -------- */
